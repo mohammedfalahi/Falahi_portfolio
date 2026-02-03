@@ -44,7 +44,7 @@ export const AboutMe = ({
     return (
         <section
             className={cn(
-                'relative w-full bg-transparent py-32',
+                'relative w-full bg-transparent py-32 overflow-visible',
                 className
             )}
         >
@@ -52,8 +52,8 @@ export const AboutMe = ({
             {/* <div className="absolute -top-32 inset-x-0 h-96 bg-gradient-to-b from-transparent via-white/95 to-white dark:via-neutral-950/95 dark:to-neutral-950 z-10" /> */}
 
 
-            <div className="relative z-20 mx-auto w-full max-w-7xl px-10 md:px-16 lg:px-20">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
+            <div className="relative z-20 mx-auto w-full max-w-7xl px-10 md:px-16 lg:px-20 overflow-visible">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start overflow-visible">
 
                     {/* LEFT CONTENT */}
                     <motion.div
@@ -154,9 +154,9 @@ export const AboutMe = ({
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
                         viewport={{ once: true }}
-                        className="flex justify-center lg:justify-end overflow-visible lg:mt-20"
+                        className="flex justify-center lg:justify-end overflow-visible lg:mt-20 relative z-50"
                     >
-                        <div className="w-[160%] lg:w-[180%] h-[520px] md:h-[620px] overflow-visible">
+                        <div className="w-[120%] lg:w-[160%] h-[400px] md:h-[480px] lg:h-[560px] overflow-visible">
                             <AboutRobot />
                         </div>
                     </motion.div>

@@ -10,8 +10,18 @@ interface SplineSceneProps {
 
 export function SplineScene({ scene, className }: SplineSceneProps) {
     return (
-        <Suspense fallback={<div className="w-full h-full" />}>
-            <Spline scene={scene} className={className} />
-        </Suspense>
+        <>
+            <div className={className} style={{ border: 'none', outline: 'none' }}>
+                <Suspense fallback={<div className="w-full h-full" />}>
+                    <Spline scene={scene} style={{ border: 'none', outline: 'none' }} />
+                </Suspense>
+            </div>
+            <style>{`
+                canvas {
+                    border: none !important;
+                    outline: none !important;
+                }
+            `}</style>
+        </>
     )
 }

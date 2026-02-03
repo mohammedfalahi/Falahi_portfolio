@@ -274,16 +274,19 @@ export const CircularTestimonials = ({
         .testimonial-container {
           width: 100%;
           max-width: 56rem;
-          padding: 2rem;
+          padding: 1.5rem 1.5rem;
         }
         .testimonial-grid {
           display: grid;
-          gap: 5rem;
+          gap: 3rem;
         }
         .image-container {
           position: relative;
           width: 100%;
-          height: 24rem;
+          max-width: 8rem;
+          height: 8rem;
+          margin: 0 auto;
+          aspect-ratio: 1;
           perspective: 1000px;
         }
         .testimonial-image {
@@ -291,32 +294,36 @@ export const CircularTestimonials = ({
           width: 100%;
           height: 100%;
           object-fit: cover;
-          border-radius: 1.5rem;
+          border-radius: 1rem;
           box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
         .testimonial-content {
           display: flex;
           flex-direction: column;
           justify-content: space-between;
+          padding: 0 0rem;
         }
         .name {
           font-weight: bold;
           margin-bottom: 0.25rem;
+          font-size: 1rem;
         }
         .designation {
-          margin-bottom: 2rem;
+          margin-bottom: 1.5rem;
+          font-size: 0.75rem;
         }
         .quote {
           line-height: 1.75;
+          font-size: 0.75rem;
         }
         .arrow-buttons {
           display: flex;
-          gap: 1.5rem;
-          padding-top: 3rem;
+          gap: 1rem;
+          padding-top: 2rem;
         }
         .arrow-button {
-          width: 2.7rem;
-          height: 2.7rem;
+          width: 2.25rem;
+          height: 2.25rem;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -329,11 +336,41 @@ export const CircularTestimonials = ({
           display: inline-block;
         }
         @media (min-width: 768px) {
+          .testimonial-container {
+            padding: 2rem;
+          }
           .testimonial-grid {
             grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+          }
+          .testimonial-content {
+            padding: 0;
+          }
+          .image-container {
+            height: 24rem;
+            max-width: none;
+            margin: 0;
+          }
+          .testimonial-image {
+            border-radius: 1.5rem;
+          }
+          .name {
+            font-size: 1.5rem;
+          }
+          .designation {
+            margin-bottom: 2rem;
+            font-size: 0.925rem;
+          }
+          .quote {
+            font-size: 1.125rem;
           }
           .arrow-buttons {
             padding-top: 0;
+            gap: 1.5rem;
+          }
+          .arrow-button {
+            width: 2.7rem;
+            height: 2.7rem;
           }
         }
       `}</style>

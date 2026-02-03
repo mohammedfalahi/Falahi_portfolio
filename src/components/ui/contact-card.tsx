@@ -39,14 +39,14 @@ export function ContactCard({
             <PlusIcon className="absolute -bottom-3 -left-3 h-6 w-6" />
             <PlusIcon className="absolute -right-3 -bottom-3 h-6 w-6" />
             <div className="flex flex-col justify-between lg:col-span-2">
-                <div className="relative h-full space-y-4 px-4 py-8 md:p-8">
-                    <h1 className="text-4xl font-bold md:text-5xl lg:text-6xl xl:text-7xl">
+                <div className="relative h-full space-y-3 px-3 py-6 md:space-y-4 md:px-4 md:py-8">
+                    <h1 className="text-2xl font-bold md:text-4xl lg:text-5xl xl:text-6xl">
                         {title}
                     </h1>
-                    <p className="text-muted-foreground max-w-xl text-base md:text-lg lg:text-xl xl:text-2xl">
+                    <p className="text-muted-foreground max-w-xl text-sm md:text-base lg:text-lg xl:text-xl">
                         {description}
                     </p>
-                    <div className="grid gap-4 md:grid md:grid-cols-2 lg:grid-cols-3">
+                    <div className="grid gap-2 md:gap-4 md:grid md:grid-cols-2 lg:grid-cols-3">
                         {contactInfo?.map((info, index) => (
                             <ContactInfo key={index} {...info} />
                         ))}
@@ -55,7 +55,7 @@ export function ContactCard({
             </div>
             <div
                 className={cn(
-                    'bg-muted/40 flex h-full w-full items-center border-t p-5 md:col-span-1 md:border-t-0 md:border-l',
+                    'bg-muted/40 flex h-full w-full items-center border-t p-4 md:p-5 md:col-span-1 md:border-t-0 md:border-l',
                     formSectionClassName,
                 )}
             >
@@ -73,13 +73,13 @@ function ContactInfo({
     ...props
 }: ContactInfoProps) {
     return (
-        <div className={cn('flex items-center gap-3 py-3', className)} {...props}>
+        <div className={cn('flex items-center gap-3 py-2 md:py-3', className)} {...props}>
             <div className="bg-muted/40 rounded-lg p-3">
                 <Icon className="h-5 w-5" />
             </div>
             <div>
-                <p className="font-medium text-base md:text-lg lg:text-xl">{label}</p>
-                <p className="text-muted-foreground text-sm md:text-base lg:text-lg">{value}</p>
+                <p className="font-medium text-sm md:text-base lg:text-lg">{label}</p>
+                <p className="text-muted-foreground text-xs md:text-sm lg:text-base">{value}</p>
             </div>
         </div>
     );

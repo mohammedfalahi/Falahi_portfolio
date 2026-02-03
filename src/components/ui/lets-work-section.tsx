@@ -93,23 +93,22 @@ export function LetsWorkTogether() {
                 >
                     <ContactCard
                         title="Get in touch"
-                        description="Have a project in mind? I'd love to hear about it. Let's create something exceptional together."
+                        description="I’m currently exploring full-time opportunities in AI and software engineering. If you’re looking for someone who builds practical, production-ready systems, let’s connect."
                         contactInfo={[
                             {
                                 icon: MailIcon,
                                 label: 'Email',
-                                value: 'hello@example.com',
-                            },
-                            {
-                                icon: PhoneIcon,
-                                label: 'Phone',
-                                value: '+1 234 567 8900',
+                                value: 'sanufalahi5034@gmail.com',
                             },
                             {
                                 icon: MapPinIcon,
                                 label: 'Location',
-                                value: 'Your City, Country',
-                                className: 'col-span-2',
+                                value: 'Dubai, UAE',
+                            },
+                            {
+                                icon: PhoneIcon,
+                                label: 'Phone',
+                                value: '+971523554486',
                             }
                         ]}
                         className="max-w-7xl w-full"
@@ -203,7 +202,7 @@ export function LetsWorkTogether() {
                             <span className="relative inline-flex size-3 rounded-full bg-emerald-500" />
                         </span>
                         <span className="text-base font-medium tracking-widest uppercase text-muted-foreground md:text-lg">
-                            Available for projects
+                            Open To Work
                         </span>
                     </div>
 
@@ -286,9 +285,8 @@ export function LetsWorkTogether() {
 
                     <div className="flex flex-col items-center gap-6 text-center">
                         <p className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-                            Have a project in mind? I'd love to hear about it. Let's create something exceptional together.
-                        </p>
-                        <span className="text-base tracking-widest uppercase text-muted-foreground/60 md:text-lg">hello@example.com</span>
+                            Actively seeking opportunities in AI and software engineering. Open to discussing roles where I can contribute, learn, and deliver real impact.                        </p>
+                        <span className="text-base tracking-widest uppercase text-muted-foreground/60 md:text-lg">sanufalahi5034@gmail.com</span>
                     </div>
                 </div>
             </div>

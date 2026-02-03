@@ -83,10 +83,10 @@ const Blog7 = ({
                         {description}
                     </p>
                 </div>
-                <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8">
+                <div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 px-6 md:px-0">
                     {posts.map((post) => (
                         <Card key={post.id} className="grid grid-rows-[auto_auto_1fr_auto]">
-                            <div className="aspect-[16/9] w-full">
+                            <div className="aspect-[16/11] md:aspect-[16/9] w-full">
                                 <a
                                     href={post.url}
                                     target="_blank"
@@ -100,14 +100,14 @@ const Blog7 = ({
                                 </a>
                             </div>
                             <CardHeader>
-                                <h3 className="text-lg font-semibold hover:underline md:text-xl">
+                                <h3 className="text-base font-semibold hover:underline md:text-lg lg:text-xl">
                                     <a href={post.url} target="_blank">
                                         {post.title}
                                     </a>
                                 </h3>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-muted-foreground">{post.summary}</p>
+                                <p className="text-sm md:text-base text-muted-foreground">{post.summary}</p>
                             </CardContent>
                             <CardFooter>
                                 <a
