@@ -138,7 +138,6 @@ function App() {
                 designation: "Agentic Automation · Multi-Agent Systems",
                 src: "/project_images/workflowai.png",
               },
-
               {
                 quote:
                   "Machine learning–based workforce task assignment system using BERT for skill matching and semantic similarity. Built NLP pipelines for decision automation and backend services using Python and Flask to support intelligent workforce allocation.",
