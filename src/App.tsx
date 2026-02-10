@@ -106,7 +106,7 @@ function App() {
               {
                 quote:
                   "Bilingual AI sales assistant for gadget retail built using RAG, LangChain, and Gemini LLMs. Implemented intent detection, entity extraction, fallback logic, and knowledge-grounded retrieval to reduce hallucinations and improve response accuracy. Voice interfaces with MongoDB and REST APIs.",
-                name: "MyG Sales Assistant",
+                name: "Agentic AI Sales Assistant",
                 designation: "AI & LLM Engineering · Boehm Tech LLP",
                 src: "/project_images/myg.png",
               },
@@ -131,6 +131,14 @@ function App() {
                 designation: "Agentic AI Systems",
                 src: "/project_images/vidhyaconnect.png",
               },
+              {
+                quote:
+                  "Natural-language business workflow automation system that converts plain English requirements into executable Python workflows. Designed multi-agent architecture (conversation agent, workflow architect, code generator, executor) with validation, error handling, and real-time execution dashboard. Enables non-technical teams to automate onboarding, notifications, and operational processes.",
+                name: "WorkflowAI",
+                designation: "Agentic Automation · Multi-Agent Systems",
+                src: "/project_images/workflowai.png",
+              },
+
               {
                 quote:
                   "Machine learning–based workforce task assignment system using BERT for skill matching and semantic similarity. Built NLP pipelines for decision automation and backend services using Python and Flask to support intelligent workforce allocation.",
