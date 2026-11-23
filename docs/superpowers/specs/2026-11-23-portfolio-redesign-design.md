@@ -127,3 +127,43 @@ The site has one main animated moment: the splash followed by the terminal. Ever
 - **India focus:** use the India CV as the download, Bengaluru as the location and the +91 phone number. The UAE is still mentioned as open.
 - **SignalForge** is listed without a link.
 - The **Blog** section is dropped.
+
+---
+
+## Revision 2: Editorial + "Ask my portfolio" (supersedes the visual system, motion and section layout above)
+
+The user judged v1 ("Evidence trail" cards + terminal) still generic. After researching Awwwards, Dribbble and Framer portfolio templates, the user chose **Editorial + Ask me** and approved the mockup `.superpowers/brainstorm/55905-1795428834/content/editorial.html`. Content, facts, the India focus and every "Resolved with the user" item above still apply.
+
+### Visual system
+
+| Token | Light | Dark |
+|---|---|---|
+| `--paper` (page) | `#E8E8E4` | `#000000` |
+| `--ink` (text, true black) | `#000000` | `#E8E8E4` |
+| `--graphite` (secondary text) | `#5C5C58` | `#9A9A95` |
+| `--rule` (hairlines, chip borders) | `#BDBDB7` | `#2A2A28` |
+| `--cite` (citations and the Ask button only) | `#1F3BFF` | `#8A9BFF` |
+| `--well` (source quote background) | `#DCDCD7` | `#121211` |
+
+- **Type:** Archivo variable (Google Fonts, `wdth 62..125`, `wght 300..900`) for everything. Display = condensed (`wdth 62`, weight 800, uppercase) for the name and section titles only; body = normal width, 17px, line-height 1.55. No monospace.
+- **Blue means "source".** It appears only on citation markers, the source-list border and the Ask button.
+- **Shapes:** pill buttons and chips; no cards, no shadows, no gradients. Structure comes from 1px rules between rows.
+
+### Motion
+- One page-load moment: the two lines of the name rise out of a clip mask (about 700ms, staggered 100ms). CTAs are visible and clickable immediately. Skipped under reduced motion.
+- The Ask answer types out (about 3 characters every 16ms) after the user asks. Instant under reduced motion. The initial answer on load is rendered complete, not typed.
+- No per-section scroll reveals, no splash, no terminal.
+
+### Sections (page order)
+1. **Header** (not fixed): name; links Ask, Work, Experience, Contact; a text pill theme toggle ("Dark"/"Light"). On narrow screens the text links are hidden, the toggle stays.
+2. **Hero:** `MOHAMMED` / `FALAHI` + portrait inline on line 2; intro "AI/ML engineer. I build agents, RAG systems and automations that show where their answers come from."; meta "Bengaluru, India. Open to roles across India and the UAE. Available now."; buttons Download CV (solid) and Email me; GitHub and LinkedIn text links.
+3. **Ask my portfolio:** underline input, Ask button, five suggestion chips, typed answer with `[n]` citation links, and a numbered sources list quoting the CV verbatim. Unknown questions get: "That isn't covered by my CV or project READMEs, so I won't guess. Email me and I'll answer it directly." Answers are precomputed (no API, site stays static) and matched by keyword.
+4. **Selected work:** the six featured projects as rows: giant condensed figure (metric value, or the project name when it has no metric) with caption | title + summary + tags | "Code on GitHub". Then **More projects**: compact two-column list (title, one line, link when a repo exists).
+5. **Toolkit:** the four skill groups as rows (group name | comma-separated items). No icons.
+6. **Experience:** rows of dates | org + title + place | points. Then "Additional experience (freelance)" rows and an "Education" row.
+7. **Certifications:** plain list rows (name | issuer).
+8. **Contact:** "Get in touch", the email as a giant link, phone / LinkedIn / location, and the Formspree form restyled with underline fields.
+9. **Footer:** © year name, GitHub, LinkedIn, "Back to top" text link.
+
+### Removed
+Splash, Terminal, Reveal, About-as-a-section (its copy folds into the hero intro and Ask answers), Devicon icons, the JetBrains Mono and Schibsted Grotesk fonts.
