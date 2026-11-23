@@ -23,6 +23,9 @@ export const profile = {
   name: 'Mohammed Falahi',
   intro: 'AI/ML engineer. I build agents, RAG systems and automations that show where their answers come from.',
   meta: 'Bengaluru, India. Open to roles across India and the UAE. Available now.',
+  /** Typeset into the hero portrait. Every phrase is from the CV. */
+  portraitText:
+    'AI/ML engineer with 2+ years of experience building intelligent applications across machine learning, deep learning, Generative AI and business automation. RAG, LLM APIs, AI agents, LangChain, LangGraph, AutoGen, LlamaIndex, n8n, Gemini, Claude, LLaMA, AWS Bedrock, PostgreSQL/pgvector, MongoDB, Supabase, FastAPI, Flask, Docker, Langfuse. 92% intent-recognition accuracy across 500+ queries. 35% reduction in hallucinations. 240+ posts/month for 8 clients. 30% more accurate forecasting. ',
   location: 'Bengaluru, India' as const,
   email: 'falahi@mohammedfalahi.in',
   phone: '+91 95672 45034',

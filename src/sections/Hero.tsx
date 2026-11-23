@@ -1,3 +1,4 @@
+import { CvPortrait } from '../components/CvPortrait'
 import { profile } from '../data/portfolio'
 import { usePrefersReducedMotion } from '../lib/motion'
 import { container, focusRing } from '../lib/ui'
@@ -6,7 +7,7 @@ const pill = `inline-block rounded-full border-[1.5px] border-ink px-5 py-3 text
 const textLink = `rounded-sm underline underline-offset-4 ${focusRing}`
 
 /**
- * Poster hero: a tall portrait on the right with the name set across it.
+ * Poster hero: a tall portrait, typeset from CV text, with the name set across it.
  * The name uses difference blending, so where it crosses the photo it turns
  * into a photographic negative, and on plain paper it reads as solid ink.
  */
@@ -20,12 +21,13 @@ export function Hero() {
         <figure
           className={`col-start-1 row-start-1 m-0 w-[64vw] justify-self-end self-start overflow-hidden md:w-[40vw] md:max-w-[560px] ${anim('animate-unveil')}`}
         >
-          <img
+          <CvPortrait
             src="/about-portrait.jpg"
             alt="Mohammed Falahi"
+            text={profile.portraitText}
             width={1002}
             height={1300}
-            className={`block aspect-[1002/1300] w-full object-cover object-[50%_20%] grayscale contrast-[1.05] ${anim('animate-settle')}`}
+            className="aspect-[1002/1300] w-full"
           />
         </figure>
 

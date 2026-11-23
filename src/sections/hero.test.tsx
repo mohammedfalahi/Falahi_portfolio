@@ -42,6 +42,10 @@ describe('Hero', () => {
     render(<Hero />)
     expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent(/Mohammed\s*Falahi/)
     expect(screen.getByRole('img', { name: 'Mohammed Falahi' })).toHaveAttribute('src', '/about-portrait.jpg')
+    // The CV-text canvas is decorative; the photo stays the accessible image and fallback.
+    const portrait = screen.getByRole('img', { name: 'Mohammed Falahi' })
+    expect(portrait.parentElement?.querySelector('canvas')).toHaveAttribute('aria-hidden', 'true')
+    expect(portrait).not.toHaveClass('opacity-0')
     expect(screen.getByText(profile.intro)).toBeInTheDocument()
     expect(screen.getByText(profile.meta)).toBeInTheDocument()
     const cv = screen.getByRole('link', { name: 'Download CV' })
