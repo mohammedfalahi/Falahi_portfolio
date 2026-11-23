@@ -1,20 +1,19 @@
 import { useState, type FormEvent } from 'react'
 import { profile } from '../data/portfolio'
-import { Reveal } from '../components/Reveal'
+import { container, focusRing } from '../lib/ui'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
-const focusRing =
-  'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acc focus-visible:ring-offset-2 focus-visible:ring-offset-bg'
-const field =
-  'w-full rounded-lg border border-rule bg-card px-3 py-2.5 text-sm text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-acc'
+const link = `rounded-sm underline underline-offset-4 ${focusRing}`
+const label = 'mb-1 block text-sm text-graphite'
+const field = `w-full rounded-none border-0 border-b-[1.5px] border-ink bg-transparent px-0 py-2 text-ink focus:outline-none ${focusRing}`
 
 export function Contact() {
   const [status, setStatus] = useState<Status>('idle')
   const [values, setValues] = useState({ name: '', email: '', message: '' })
 
   const set = (key: keyof typeof values) => (e: { target: { value: string } }) =>
-    setValues((v) => ({ ...v, [key]: e.target.value }))
+    setValues(v => ({ ...v, [key]: e.target.value }))
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
@@ -34,89 +33,76 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-14 md:px-9 md:py-20">
-      <h2 className="mb-6 text-[28px] font-extrabold tracking-[-0.03em] text-ink md:text-[30px]">Get in touch</h2>
-      <Reveal>
-        <div className="grid gap-8 md:grid-cols-[1fr_1.4fr]">
-          <div className="text-sm text-mute">
-            <p className="mb-4 leading-[1.55]">
-              Open to roles across India and the UAE, available immediately. The quickest way to reach me is email.
-            </p>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href={`mailto:${profile.email}`}
-                  className={`break-all rounded font-semibold text-acc underline underline-offset-[3px] ${focusRing}`}
-                >
-                  {profile.email}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={'tel:' + profile.phone.replace(/\s/g, '')}
-                  className={`rounded font-semibold text-acc underline underline-offset-[3px] ${focusRing}`}
-                >
-                  {profile.phone}
-                </a>
-              </li>
-              <li>
-                <a
-                  href={profile.linkedin}
-                  target="_blank"
-                  rel="noreferrer"
-                  className={`rounded font-semibold text-acc underline underline-offset-[3px] ${focusRing}`}
-                >
-                  LinkedIn
-                </a>
-              </li>
-              <li>{profile.location}</li>
-            </ul>
-          </div>
+    <section id="contact" className={`${container} pb-10 pt-20`}>
+      <h2 className="cond m-0 mb-6 text-[clamp(44px,6vw,84px)] leading-[.9]">Get in touch</h2>
+      <a
+        href={`mailto:${profile.email}`}
+        className={`cond block break-words rounded-sm text-[clamp(36px,7.4vw,112px)] normal-case leading-[.9] no-underline hover:text-cite ${focusRing}`}
+      >
+        {profile.email}
+      </a>
 
-          <form onSubmit={onSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="contact-name" className="mb-1 block text-sm font-medium text-ink">
-                Name
-              </label>
-              <input id="contact-name" name="name" required autoComplete="name" value={values.name} onChange={set('name')} className={field} />
-            </div>
-            <div>
-              <label htmlFor="contact-email" className="mb-1 block text-sm font-medium text-ink">
-                Email
-              </label>
-              <input
-                id="contact-email"
-                name="email"
-                type="email"
-                required
-                autoComplete="email"
-                value={values.email}
-                onChange={set('email')}
-                className={field}
-              />
-            </div>
-            <div>
-              <label htmlFor="contact-message" className="mb-1 block text-sm font-medium text-ink">
-                Message
-              </label>
-              <textarea id="contact-message" name="message" required rows={5} value={values.message} onChange={set('message')} className={field} />
-            </div>
+      <div className="mt-12 grid gap-10 md:grid-cols-2">
+        <ul className="m-0 flex list-none flex-col gap-2 p-0">
+          <li>
+            <a href={'tel:' + profile.phone.replace(/\s/g, '')} className={link}>
+              {profile.phone}
+            </a>
+          </li>
+          <li>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" className={link}>
+              LinkedIn
+            </a>
+          </li>
+          <li>{profile.location}</li>
+          <li className="mt-2 max-w-[40ch] text-graphite">
+            Open to roles across India and the UAE. Email is the quickest way to reach me.
+          </li>
+        </ul>
+
+        <form onSubmit={onSubmit} className="flex flex-col gap-5">
+          <div>
+            <label htmlFor="contact-name" className={label}>
+              Name
+            </label>
+            <input id="contact-name" name="name" required autoComplete="name" value={values.name} onChange={set('name')} className={field} />
+          </div>
+          <div>
+            <label htmlFor="contact-email" className={label}>
+              Email
+            </label>
+            <input
+              id="contact-email"
+              name="email"
+              type="email"
+              required
+              autoComplete="email"
+              value={values.email}
+              onChange={set('email')}
+              className={field}
+            />
+          </div>
+          <div>
+            <label htmlFor="contact-message" className={label}>
+              Message
+            </label>
+            <textarea id="contact-message" name="message" required rows={4} value={values.message} onChange={set('message')} className={`${field} resize-y`} />
+          </div>
+          <div>
             <button
               type="submit"
               disabled={status === 'sending'}
-              className={`rounded-lg bg-acc px-[18px] py-[11px] text-sm font-semibold text-white hover:opacity-90 disabled:opacity-60 dark:text-bg ${focusRing}`}
+              className={`rounded-full bg-ink px-5 py-3 text-[15px] font-semibold text-paper disabled:opacity-60 ${focusRing}`}
             >
               {status === 'sending' ? 'Sending' : 'Send message'}
             </button>
-            <div role="status" aria-live="polite" className="min-h-5 text-sm">
-              {status === 'sent' && <p className="text-ok">Message sent. Thank you, I will reply soon.</p>}
-              {status === 'error' && (
-                <p className="text-ink">Message not sent. Email me directly at {profile.email}.</p>
-              )}
-            </div>
-          </form>
-        </div>
-      </Reveal>
+          </div>
+          <div role="status" aria-live="polite" className="min-h-5 text-sm">
+            {status === 'sent' && <p className="m-0">Message sent. Thank you, I will reply soon.</p>}
+            {status === 'error' && <p className="m-0">Message not sent. Email me directly at {profile.email}.</p>}
+          </div>
+        </form>
+      </div>
     </section>
   )
 }

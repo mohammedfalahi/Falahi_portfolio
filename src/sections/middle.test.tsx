@@ -1,114 +1,72 @@
-import { fireEvent, render, screen } from '@testing-library/react'
-import { act } from '@testing-library/react'
-import { afterEach, describe, expect, it, vi } from 'vitest'
-import { profile, skills } from '../data/portfolio'
-import { About } from './About'
-import { Skills } from './Skills'
+import { render, screen } from '@testing-library/react'
+import { describe, expect, it } from 'vitest'
+import { certifications, projects, skills } from '../data/portfolio'
+import { Certifications } from './Certifications'
 import { Experience } from './Experience'
+import { Projects } from './Projects'
+import { Skills } from './Skills'
 
-const originalMatchMedia = window.matchMedia
+describe('Selected work', () => {
+  const featured = projects.filter(p => p.featured)
 
-function mockReducedMotion(reduce: boolean) {
-  window.matchMedia = vi.fn().mockImplementation((query: string) => ({
-    matches: query.includes('prefers-reduced-motion') ? reduce : false,
-    media: query,
-    onchange: null,
-    addEventListener: vi.fn(),
-    removeEventListener: vi.fn(),
-    addListener: vi.fn(),
-    removeListener: vi.fn(),
-    dispatchEvent: vi.fn(),
-  })) as unknown as typeof window.matchMedia
-}
-
-afterEach(() => {
-  window.matchMedia = originalMatchMedia
-  vi.useRealTimers()
-  vi.unstubAllGlobals()
-})
-
-describe('Reveal with motion enabled', () => {
-  it('renders visible content when IntersectionObserver is missing', () => {
-    mockReducedMotion(false)
-    vi.stubGlobal('IntersectionObserver', undefined)
-    const { container } = render(<About />)
-    expect(screen.getByText(profile.facts[0])).toBeInTheDocument()
-    expect(container.innerHTML).not.toMatch(/opacity:\s*0/)
+  it('renders all six featured projects with their figures and code links', () => {
+    render(<Projects />)
+    expect(screen.getByRole('heading', { level: 2, name: 'Selected work' })).toBeInTheDocument()
+    expect(featured).toHaveLength(6)
+    for (const p of featured) {
+      expect(screen.getByRole('heading', { level: 3, name: p.title })).toBeInTheDocument()
+      if (p.metric) {
+        expect(screen.getByText(p.metric.value)).toBeInTheDocument()
+        expect(screen.getByText(p.metric.caption)).toBeInTheDocument()
+      }
+      const link = screen.getByRole('link', { name: `Code on GitHub: ${p.title}` })
+      expect(link).toHaveAttribute('href', p.repo)
+      expect(link).toHaveAttribute('target', '_blank')
+      expect(link).toHaveAttribute('rel', 'noreferrer')
+    }
   })
 
-  it('keeps the reveal pending (no timer forces it) while the observer has not fired', () => {
-    vi.useFakeTimers()
-    mockReducedMotion(false)
-    class NeverFires {
-      observe() {}
-      unobserve() {}
-      disconnect() {}
+  it('lists more projects, with SignalForge unlinked', () => {
+    render(<Projects />)
+    expect(screen.getByRole('heading', { level: 3, name: 'More projects' })).toBeInTheDocument()
+    const item = screen.getByText('SignalForge').closest('li') as HTMLElement
+    expect(item).not.toBeNull()
+    expect(item.querySelector('a')).toBeNull()
+    expect(screen.getByRole('link', { name: 'Job Buddy' })).toHaveAttribute('href', 'https://github.com/mohammedfalahi/job-buddy')
+  })
+})
+
+describe('Toolkit', () => {
+  it('renders every skill group with its items', () => {
+    const { container } = render(<Skills />)
+    expect(container.querySelector('section')).toHaveAttribute('id', 'toolkit')
+    expect(container.querySelector('img')).toBeNull()
+    for (const g of skills) {
+      expect(screen.getByText(g.name)).toBeInTheDocument()
+      expect(screen.getByText(g.items.join(', '))).toBeInTheDocument()
     }
-    vi.stubGlobal('IntersectionObserver', NeverFires)
-    const { container } = render(<About />)
-    expect(container.innerHTML).toMatch(/opacity:\s*0/)
-    act(() => {
-      vi.advanceTimersByTime(2500)
-    })
-    expect(container.innerHTML).toMatch(/opacity:\s*0/)
   })
 })
 
 describe('Experience', () => {
-  it('orders roles, then the freelance group, then education', () => {
-    mockReducedMotion(true)
-    const { container } = render(<Experience />)
-    const text = container.textContent ?? ''
-    const order = [
-      'Wisermonks',
-      'AI Engineer (R&D)',
-      'AI Specialist (R&D) Intern',
-      'Additional experience (freelance)',
-      'Drytis Inc.',
-      'Careerflow.ai',
-      'MES College of Engineering',
-    ].map((s) => text.indexOf(s))
-    expect(order.every((i) => i >= 0)).toBe(true)
-    expect([...order].sort((a, b) => a - b)).toEqual(order)
-    expect(container.querySelector('section#experience')).not.toBeNull()
+  it('shows roles, freelance work and education', () => {
+    render(<Experience />)
+    for (const org of ['Wisermonks', 'Drytis Inc.', 'Careerflow.ai', 'MES College of Engineering']) {
+      expect(screen.getAllByText(org).length).toBeGreaterThan(0)
+    }
+    expect(screen.getAllByText('Boehm Tech LLP')).toHaveLength(2)
+    expect(screen.getByText('Jan 2026 – Aug 2026')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Additional experience (freelance)' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Education' })).toBeInTheDocument()
   })
 })
 
-describe('Skills', () => {
-  it('hides a failed icon but keeps the label', () => {
-    mockReducedMotion(true)
-    const { container } = render(<Skills />)
-    const img = container.querySelector('img') as HTMLImageElement
-    expect(img.src).toContain('devicons/devicon@v2.16.0/icons/pytorch/pytorch-original.svg')
-    fireEvent.error(img)
-    expect(container.querySelector('img[src*="/pytorch/"]')).toBeNull()
-    expect(container.querySelector('img[src*="/tensorflow/"]')).not.toBeNull()
-    expect(screen.getByText('PyTorch')).toBeInTheDocument()
-    expect(container.querySelector('section#skills')).not.toBeNull()
-  })
-
-  it('gives chip icons a light backing in dark mode only', () => {
-    mockReducedMotion(true)
-    const { container } = render(<Skills />)
-    const img = container.querySelector('img') as HTMLImageElement
-    expect(img.className).toContain('dark:bg-white/90')
-    expect(img.className).not.toMatch(/(^|\s)bg-/)
-  })
-
-  it('renders text-only chips without an image', () => {
-    mockReducedMotion(true)
-    render(<Skills />)
-    expect(screen.getByText('LangChain')).toBeInTheDocument()
-    expect(skills.length).toBeGreaterThan(0)
-  })
-})
-
-describe('About', () => {
-  it('renders the facts and portrait', () => {
-    mockReducedMotion(true)
-    const { container } = render(<About />)
-    for (const f of profile.facts) expect(screen.getByText(f)).toBeInTheDocument()
-    expect(screen.getByAltText(/Mohammed Falahi/)).toHaveAttribute('src', '/about-portrait.jpg')
-    expect(container.querySelector('section#about')).not.toBeNull()
+describe('Certifications', () => {
+  it('lists every certification with its issuer, Oracle first', () => {
+    render(<Certifications />)
+    const items = screen.getAllByRole('listitem')
+    expect(items).toHaveLength(certifications.length)
+    expect(items[0]).toHaveTextContent('Oracle Certified Foundations Associate: Agentic AI')
+    expect(items[0]).toHaveTextContent('Oracle')
   })
 })
