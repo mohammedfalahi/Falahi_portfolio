@@ -76,7 +76,11 @@ export function CvPortrait({ src, alt, text, width, height, className = '' }: Pr
       oc.height = rows
       const o = oc.getContext('2d')
       if (!o) return
-      drawPhoto(o, cols, rows)
+      // Cells are taller than wide, so fit the photo to the real box size (W x H)
+      // and scale that down per axis. Fitting it to cols x rows directly would treat
+      // each cell as square and stretch the face vertically.
+      o.scale(cols / W, rows / H)
+      drawPhoto(o, W, H)
       const px = o.getImageData(0, 0, cols, rows).data
       const lums = new Float32Array(cols * rows)
       for (let j = 0; j < lums.length; j++) {
