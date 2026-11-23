@@ -8,14 +8,14 @@ export default {
     theme: {
         extend: {
             colors: {
-                bg: 'var(--bg)',
-                card: 'var(--card)',
-                ink: 'var(--ink)',
-                mute: 'var(--mute)',
-                rule: 'var(--rule)',
-                acc: 'var(--acc)',
-                ok: 'var(--ok)',
-                term: 'var(--term)'
+                bg: 'rgb(var(--bg-rgb) / <alpha-value>)',
+                card: 'rgb(var(--card-rgb) / <alpha-value>)',
+                ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
+                mute: 'rgb(var(--mute-rgb) / <alpha-value>)',
+                rule: 'rgb(var(--rule-rgb) / <alpha-value>)',
+                acc: 'rgb(var(--acc-rgb) / <alpha-value>)',
+                ok: 'rgb(var(--ok-rgb) / <alpha-value>)',
+                term: 'rgb(var(--term-rgb) / <alpha-value>)'
             },
             fontFamily: {
                 sans: ['Schibsted Grotesk', 'ui-sans-serif', 'system-ui', 'sans-serif'],

@@ -85,7 +85,7 @@ export function Nav() {
         </div>
       </nav>
       {open && (
-        <ul id="mobile-menu" data-testid="mobile-menu" className="border-t border-rule px-5 pb-4 pt-2 md:hidden">
+        <ul id="mobile-menu" data-testid="mobile-menu" className="border-b border-t border-rule bg-bg px-5 pb-4 pt-2 md:hidden">
           {links.map(l => (
             <li key={l.href}>
               <a

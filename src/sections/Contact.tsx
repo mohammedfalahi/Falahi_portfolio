@@ -35,7 +35,7 @@ export function Contact() {
 
   return (
     <section id="contact" className="mx-auto max-w-6xl scroll-mt-20 px-5 py-14 md:px-9 md:py-20">
-      <h2 className="mb-6 text-[28px] font-extrabold tracking-[-0.03em] text-ink md:text-[30px]">Contact</h2>
+      <h2 className="mb-6 text-[28px] font-extrabold tracking-[-0.03em] text-ink md:text-[30px]">Get in touch</h2>
       <Reveal>
         <div className="grid gap-8 md:grid-cols-[1fr_1.4fr]">
           <div className="text-sm text-mute">
@@ -53,10 +53,20 @@ export function Contact() {
               </li>
               <li>
                 <a
-                  href="tel:+919567245034"
+                  href={'tel:' + profile.phone.replace(/\s/g, '')}
                   className={`rounded font-semibold text-acc underline underline-offset-[3px] ${focusRing}`}
                 >
                   {profile.phone}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={profile.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className={`rounded font-semibold text-acc underline underline-offset-[3px] ${focusRing}`}
+                >
+                  LinkedIn
                 </a>
               </li>
               <li>{profile.location}</li>

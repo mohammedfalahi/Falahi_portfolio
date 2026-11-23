@@ -35,8 +35,8 @@ export const profile = {
   cv: '/Mohammed_Falahi_CV.pdf' as const,
   about: [
     'I am an AI/ML engineer with 2+ years of experience, including an R&D internship, building intelligent applications across machine learning, deep learning, generative AI and business automation.',
-    'My recent work is agentic AI and RAG: a multi-client content pipeline, an appointment-booking assistant and grounded incident diagnosis, each built so that answers can be traced back to their sources.',
-    'Earlier I built a bilingual voice sales assistant and an LSTM–XGBoost demand-forecasting pipeline, and I have shipped them with Docker, FastAPI and Flask.',
+    'My recent work centres on agentic AI and RAG: a multi-client content pipeline, an appointment-booking assistant and grounded incident diagnosis, each built so that answers can be traced back to their sources.',
+    'Earlier I built a bilingual voice sales assistant and an LSTM–XGBoost demand-forecasting pipeline, built with Docker, FastAPI and Flask.',
     'I enjoy collaborating with developers, marketing and design teams, and I care about evaluation, human approval steps and production reliability.',
   ],
   facts: [
@@ -54,7 +54,7 @@ export const terminal: TerminalLine[] = [
   { kind: 'ok', text: '✓ every claim checked against the cited text' },
   { kind: 'out', text: 'Answer with citations', cite: ['1', '2'] },
   { kind: 'cmd', text: 'oncall investigate --alert checkout-5xx' },
-  { kind: 'ok', text: '✓ root cause hypothesis in 41s · calling on-call engineer' },
+  { kind: 'ok', text: '✓ root cause hypothesis ready · calling on-call engineer' },
 ]
 
 export const skills: SkillGroup[] = [
@@ -182,7 +182,7 @@ export const projects: Project[] = [
   {
     slug: 'agentic-content-pipeline',
     title: 'Agentic Content Production Pipeline',
-    metric: { value: '240+', caption: 'posts/month for 8 clients, in production' },
+    metric: { value: '240+', caption: 'posts/month, designed for 8 clients' },
     summary:
       'Five phases from onboarding and brand intelligence to calendars, Telegram approvals and multi-format content.',
     tags: ['n8n', 'Supabase', 'Gemini', 'Firecrawl', 'Telegram'],

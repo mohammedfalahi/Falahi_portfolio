@@ -12,6 +12,14 @@
     --acc: #2D4BF0;
     --ok: #1F8A5B;
     --term: #0E1626;
+    --bg-rgb: 237 240 243;
+    --card-rgb: 255 255 255;
+    --ink-rgb: 18 27 46;
+    --mute-rgb: 90 101 119;
+    --rule-rgb: 213 219 227;
+    --acc-rgb: 45 75 240;
+    --ok-rgb: 31 138 91;
+    --term-rgb: 14 22 38;
   }
 
   .dark {
@@ -23,6 +31,14 @@
     --acc: #7C93FF;
     --ok: #4CC38A;
     --term: #070C16;
+    --bg-rgb: 13 20 34;
+    --card-rgb: 21 32 54;
+    --ink-rgb: 232 236 243;
+    --mute-rgb: 147 160 181;
+    --rule-rgb: 36 50 74;
+    --acc-rgb: 124 147 255;
+    --ok-rgb: 76 195 138;
+    --term-rgb: 7 12 22;
   }
 
   html {
