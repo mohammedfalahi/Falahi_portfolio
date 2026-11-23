@@ -36,7 +36,7 @@ describe('Reveal with motion enabled', () => {
     expect(container.innerHTML).not.toMatch(/opacity:\s*0/)
   })
 
-  it('forces content visible after a timeout if the observer never fires', () => {
+  it('keeps the reveal pending (no timer forces it) while the observer has not fired', () => {
     vi.useFakeTimers()
     mockReducedMotion(false)
     class NeverFires {
@@ -50,7 +50,7 @@ describe('Reveal with motion enabled', () => {
     act(() => {
       vi.advanceTimersByTime(2500)
     })
-    expect(container.innerHTML).not.toMatch(/opacity:\s*0/)
+    expect(container.innerHTML).toMatch(/opacity:\s*0/)
   })
 })
 
