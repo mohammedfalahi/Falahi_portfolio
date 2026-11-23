@@ -104,4 +104,11 @@ describe('Footer', () => {
     })
     expect(screen.queryByRole('button', { name: 'Back to top' })).not.toBeInTheDocument()
   })
+
+  it('reserves bottom padding so the fixed back-to-top button never covers the links', () => {
+    const { container } = render(<Footer />)
+    const inner = container.querySelector('footer > div') as HTMLElement
+    expect(inner.className).toContain('pb-20')
+    expect(inner.contains(screen.getByRole('link', { name: 'Email' }))).toBe(true)
+  })
 })

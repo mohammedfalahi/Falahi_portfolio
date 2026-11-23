@@ -16,7 +16,7 @@ function Chip({ label, slug }: { label: string; slug?: string }) {
           width={20}
           height={20}
           loading="lazy"
-          className="h-5 w-5"
+          className="h-5 w-5 rounded-[5px] dark:bg-white/90 dark:p-[2px]"
           onError={() => setFailed(true)}
         />
       )}

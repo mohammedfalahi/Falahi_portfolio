@@ -87,6 +87,14 @@ describe('Skills', () => {
     expect(container.querySelector('section#skills')).not.toBeNull()
   })
 
+  it('gives chip icons a light backing in dark mode only', () => {
+    mockReducedMotion(true)
+    const { container } = render(<Skills />)
+    const img = container.querySelector('img') as HTMLImageElement
+    expect(img.className).toContain('dark:bg-white/90')
+    expect(img.className).not.toMatch(/(^|\s)bg-/)
+  })
+
   it('renders text-only chips without an image', () => {
     mockReducedMotion(true)
     render(<Skills />)

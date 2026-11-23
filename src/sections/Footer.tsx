@@ -17,7 +17,7 @@ export function Footer() {
 
   return (
     <footer className="border-t border-rule">
-      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 py-8 text-sm text-mute md:px-9">
+      <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-3 px-5 pb-20 pt-8 text-sm text-mute md:px-9">
         <p>
           © {new Date().getFullYear()} {profile.name}
         </p>
