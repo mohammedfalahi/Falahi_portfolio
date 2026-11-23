@@ -108,7 +108,7 @@ describe('About', () => {
     mockReducedMotion(true)
     const { container } = render(<About />)
     for (const f of profile.facts) expect(screen.getByText(f)).toBeInTheDocument()
-    expect(screen.getByAltText(/Mohammed Falahi/)).toHaveAttribute('src', '/about-portrait.png')
+    expect(screen.getByAltText(/Mohammed Falahi/)).toHaveAttribute('src', '/about-portrait.jpg')
     expect(container.querySelector('section#about')).not.toBeNull()
   })
 })

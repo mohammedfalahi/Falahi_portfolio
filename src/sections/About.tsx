@@ -14,7 +14,7 @@ export function About() {
           </div>
           <div>
             <img
-              src="/about-portrait.png"
+              src="/about-portrait.jpg"
               alt={`Portrait of ${profile.name}`}
               className="mb-4 aspect-square w-full max-w-[280px] rounded-[14px] border border-rule object-cover"
             />
