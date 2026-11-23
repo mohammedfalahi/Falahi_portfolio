@@ -3,6 +3,7 @@ import { Splash } from './sections/Splash'
 import { Nav } from './sections/Nav'
 import { Hero } from './sections/Hero'
 import { About } from './sections/About'
+import { Ask } from './sections/Ask'
 import { Skills } from './sections/Skills'
 import { Experience } from './sections/Experience'
 import { Projects } from './sections/Projects'
@@ -19,6 +20,7 @@ function App() {
       <Nav />
       <main>
         <Hero splashDone={splashDone} />
+        <Ask />
         <About />
         <Skills />
         <Experience />

@@ -4,58 +4,67 @@
 
 @layer base {
   :root {
-    --bg: #EDF0F3;
-    --card: #FFFFFF;
-    --ink: #121B2E;
-    --mute: #5A6577;
-    --rule: #D5DBE3;
-    --acc: #2D4BF0;
-    --ok: #1F8A5B;
-    --term: #0E1626;
-    --bg-rgb: 237 240 243;
-    --card-rgb: 255 255 255;
-    --ink-rgb: 18 27 46;
-    --mute-rgb: 90 101 119;
-    --rule-rgb: 213 219 227;
-    --acc-rgb: 45 75 240;
-    --ok-rgb: 31 138 91;
-    --term-rgb: 14 22 38;
+    --paper: #E8E8E4;
+    --ink: #000000;
+    --graphite: #5C5C58;
+    --rule: #BDBDB7;
+    --cite: #1F3BFF;
+    --well: #DCDCD7;
+    --paper-rgb: 232 232 228;
+    --ink-rgb: 0 0 0;
+    --graphite-rgb: 92 92 88;
+    --rule-rgb: 189 189 183;
+    --cite-rgb: 31 59 255;
+    --well-rgb: 220 220 215;
   }
 
   .dark {
-    --bg: #0D1422;
-    --card: #152036;
-    --ink: #E8ECF3;
-    --mute: #93A0B5;
-    --rule: #24324A;
-    --acc: #7C93FF;
-    --ok: #4CC38A;
-    --term: #070C16;
-    --bg-rgb: 13 20 34;
-    --card-rgb: 21 32 54;
-    --ink-rgb: 232 236 243;
-    --mute-rgb: 147 160 181;
-    --rule-rgb: 36 50 74;
-    --acc-rgb: 124 147 255;
-    --ok-rgb: 76 195 138;
-    --term-rgb: 7 12 22;
+    --paper: #000000;
+    --ink: #E8E8E4;
+    --graphite: #9A9A95;
+    --rule: #2A2A28;
+    --cite: #8A9BFF;
+    --well: #121211;
+    --paper-rgb: 0 0 0;
+    --ink-rgb: 232 232 228;
+    --graphite-rgb: 154 154 149;
+    --rule-rgb: 42 42 40;
+    --cite-rgb: 138 155 255;
+    --well-rgb: 18 18 17;
   }
 
   html {
+    background: var(--paper);
     scroll-behavior: smooth;
   }
 
   body {
-    background: var(--bg);
+    background: var(--paper);
     color: var(--ink);
     font-family: theme(fontFamily.sans);
-    font-feature-settings: "rlig" 1, "calt" 1;
+    font-variation-settings: 'wdth' 100;
+    font-size: 17px;
+    line-height: 1.55;
     -webkit-font-smoothing: antialiased;
+    transition: background-color 0.3s, color 0.3s;
   }
 
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
     }
+    body {
+      transition: none;
+    }
+  }
+}
+
+@layer components {
+  .cond {
+    font-variation-settings: 'wdth' 62;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    text-transform: uppercase;
+    line-height: 0.85;
   }
 }
