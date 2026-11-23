@@ -36,7 +36,7 @@ export const profile = {
   about: [
     'I am an AI/ML engineer with 2+ years of experience, including an R&D internship, building intelligent applications across machine learning, deep learning, generative AI and business automation.',
     'My recent work centres on agentic AI and RAG: a multi-client content pipeline, an appointment-booking assistant and grounded incident diagnosis, each built so that answers can be traced back to their sources.',
-    'Earlier I built a bilingual voice sales assistant and an LSTM–XGBoost demand-forecasting pipeline, built with Docker, FastAPI and Flask.',
+    'Earlier I built a bilingual voice sales assistant and an LSTM–XGBoost demand-forecasting pipeline using Docker, FastAPI and Flask.',
     'I enjoy collaborating with developers, marketing and design teams, and I care about evaluation, human approval steps and production reliability.',
   ],
   facts: [
