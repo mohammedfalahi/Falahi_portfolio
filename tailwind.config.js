@@ -7,54 +7,28 @@ export default {
     ],
     theme: {
         extend: {
-            borderRadius: {
-                lg: 'var(--radius)',
-                md: 'calc(var(--radius) - 2px)',
-                sm: 'calc(var(--radius) - 4px)'
-            },
             colors: {
-                background: 'hsl(var(--background))',
-                foreground: 'hsl(var(--foreground))',
-                card: {
-                    DEFAULT: 'hsl(var(--card))',
-                    foreground: 'hsl(var(--foreground))'
-                },
-                popover: {
-                    DEFAULT: 'hsl(var(--popover))',
-                    foreground: 'hsl(var(--popover-foreground))'
-                },
-                primary: {
-                    DEFAULT: 'hsl(var(--primary))',
-                    foreground: 'hsl(var(--primary-foreground))'
-                },
-                secondary: {
-                    DEFAULT: 'hsl(var(--secondary))',
-                    foreground: 'hsl(var(--secondary-foreground))'
-                },
-                muted: {
-                    DEFAULT: 'hsl(var(--muted))',
-                    foreground: 'hsl(var(--muted-foreground))'
-                },
-                accent: {
-                    DEFAULT: 'hsl(var(--accent))',
-                    foreground: 'hsl(var(--accent-foreground))'
-                },
-                destructive: {
-                    DEFAULT: 'hsl(var(--destructive))',
-                    foreground: 'hsl(var(--destructive-foreground))'
-                },
-                border: 'hsl(var(--border))',
-                input: 'hsl(var(--input))',
-                ring: 'hsl(var(--ring))',
-                chart: {
-                    '1': 'hsl(var(--chart-1))',
-                    '2': 'hsl(var(--chart-2))',
-                    '3': 'hsl(var(--chart-3))',
-                    '4': 'hsl(var(--chart-4))',
-                    '5': 'hsl(var(--chart-5))'
-                }
+                paper: 'rgb(var(--paper-rgb) / <alpha-value>)',
+                ink: 'rgb(var(--ink-rgb) / <alpha-value>)',
+                graphite: 'rgb(var(--graphite-rgb) / <alpha-value>)',
+                rule: 'rgb(var(--rule-rgb) / <alpha-value>)',
+                cite: 'rgb(var(--cite-rgb) / <alpha-value>)',
+                well: 'rgb(var(--well-rgb) / <alpha-value>)'
+            },
+            fontFamily: {
+                sans: ['Archivo', 'ui-sans-serif', 'system-ui', 'sans-serif']
+            },
+            keyframes: {
+                blink: { '50%': { opacity: '0' } },
+                rise: { from: { transform: 'translateY(100%)' }, to: { transform: 'translateY(0)' } },
+                unveil: { from: { clipPath: 'inset(100% 0 0 0)' }, to: { clipPath: 'inset(0 0 0 0)' } }
+            },
+            animation: {
+                blink: 'blink 1s steps(1) infinite',
+                rise: 'rise 700ms cubic-bezier(.2,.7,.1,1) both',
+                unveil: 'unveil 900ms cubic-bezier(.7,0,.2,1) both'
             }
         }
     },
-    plugins: [require("tailwindcss-animate")],
+    plugins: [],
 }
