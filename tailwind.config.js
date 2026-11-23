@@ -20,11 +20,15 @@ export default {
             },
             keyframes: {
                 blink: { '50%': { opacity: '0' } },
-                rise: { from: { transform: 'translateY(100%)' }, to: { transform: 'translateY(0)' } }
+                rise: { from: { transform: 'translateY(100%)' }, to: { transform: 'translateY(0)' } },
+                unveil: { from: { clipPath: 'inset(100% 0 0 0)' }, to: { clipPath: 'inset(0 0 0 0)' } },
+                settle: { from: { transform: 'scale(1.12)' }, to: { transform: 'scale(1)' } }
             },
             animation: {
                 blink: 'blink 1s steps(1) infinite',
-                rise: 'rise 700ms cubic-bezier(.2,.7,.1,1) both'
+                rise: 'rise 700ms cubic-bezier(.2,.7,.1,1) both',
+                unveil: 'unveil 900ms cubic-bezier(.7,0,.2,1) both',
+                settle: 'settle 1400ms cubic-bezier(.2,.7,.1,1) both'
             }
         }
     },
