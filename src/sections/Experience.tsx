@@ -2,6 +2,8 @@ import { education, experience, freelance, type Role } from '../data/portfolio'
 import { Reveal } from '../components/Reveal'
 
 function RoleCard({ role, compact = false }: { role: Role; compact?: boolean }) {
+  // Main cards sit directly under the section h2; compact cards sit under a group h3.
+  const Title = compact ? 'h4' : 'h3'
   return (
     <article className="overflow-hidden rounded-[14px] border border-rule bg-card">
       <div className={compact ? 'h-9' : 'h-14'} style={{ backgroundColor: role.accent }} aria-hidden="true" />
@@ -15,7 +17,7 @@ function RoleCard({ role, compact = false }: { role: Role; compact?: boolean }) 
         >
           {role.org.charAt(0)}
         </div>
-        <h4 className={`mt-2 font-bold text-ink ${compact ? 'text-[15px]' : 'text-lg'}`}>{role.org}</h4>
+        <Title className={`mt-2 font-bold text-ink ${compact ? 'text-[15px]' : 'text-lg'}`}>{role.org}</Title>
         <p className="text-sm font-medium text-ink">{role.title}</p>
         <p className="mb-2 text-[13px] text-mute">
           {role.place} · {role.start} to {role.end}

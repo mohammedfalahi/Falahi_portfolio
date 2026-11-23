@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react'
+import { act } from '@testing-library/react'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import { profile, skills } from '../data/portfolio'
 import { About } from './About'
@@ -22,6 +23,35 @@ function mockReducedMotion(reduce: boolean) {
 
 afterEach(() => {
   window.matchMedia = originalMatchMedia
+  vi.useRealTimers()
+  vi.unstubAllGlobals()
+})
+
+describe('Reveal with motion enabled', () => {
+  it('renders visible content when IntersectionObserver is missing', () => {
+    mockReducedMotion(false)
+    vi.stubGlobal('IntersectionObserver', undefined)
+    const { container } = render(<About />)
+    expect(screen.getByText(profile.facts[0])).toBeInTheDocument()
+    expect(container.innerHTML).not.toMatch(/opacity:\s*0/)
+  })
+
+  it('forces content visible after a timeout if the observer never fires', () => {
+    vi.useFakeTimers()
+    mockReducedMotion(false)
+    class NeverFires {
+      observe() {}
+      unobserve() {}
+      disconnect() {}
+    }
+    vi.stubGlobal('IntersectionObserver', NeverFires)
+    const { container } = render(<About />)
+    expect(container.innerHTML).toMatch(/opacity:\s*0/)
+    act(() => {
+      vi.advanceTimersByTime(2500)
+    })
+    expect(container.innerHTML).not.toMatch(/opacity:\s*0/)
+  })
 })
 
 describe('Experience', () => {
