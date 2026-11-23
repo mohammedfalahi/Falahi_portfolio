@@ -33,6 +33,26 @@ afterEach(() => {
 })
 
 describe('Ask my portfolio', () => {
+  it('labels the question field with visible text', () => {
+    render(<Ask />)
+    const label = screen.getByText('Your question')
+    expect(label.tagName).toBe('LABEL')
+    expect(label).not.toHaveClass('sr-only')
+    const input = screen.getByLabelText('Your question')
+    expect(input.tagName).toBe('INPUT')
+    expect(label).toHaveAttribute('for', input.id)
+  })
+
+  it('uses the primary button for Ask and the secondary style for the chips', () => {
+    render(<Ask />)
+    const submit = screen.getByRole('button', { name: 'Ask' })
+    expect(submit).toHaveClass('btn', 'btn-primary')
+    expect(submit).not.toHaveClass('bg-cite')
+    for (const s of suggestions) {
+      expect(screen.getByRole('button', { name: s })).toHaveClass('btn', 'btn-secondary')
+    }
+  })
+
   it('shows the first suggestion answer and its sources complete on first render', () => {
     render(<Ask />)
     const first = byId('production')

@@ -1,6 +1,6 @@
 import { profile } from '../data/portfolio'
 import { useTheme } from '../lib/theme'
-import { container, focusRing } from '../lib/ui'
+import { btnSecondary, container, focusRing } from '../lib/ui'
 
 const links = [
   { href: '#ask', label: 'Ask' },
@@ -17,7 +17,7 @@ function ThemeToggle() {
       type="button"
       onClick={toggle}
       aria-label={dark ? 'Switch to light mode' : 'Switch to dark mode'}
-      className={`rounded-full border border-ink px-3 py-1 text-[13px] text-ink ${focusRing}`}
+      className={`${btnSecondary} btn-sm md:px-3 md:py-1 md:text-[13px]`}
     >
       {dark ? 'Light' : 'Dark'}
     </button>
@@ -34,7 +34,7 @@ export function Nav() {
             <ul className="flex items-center gap-6">
               {links.map(l => (
                 <li key={l.href}>
-                  <a href={l.href} className={`rounded-sm no-underline underline-offset-4 hover:underline ${focusRing}`}>
+                  <a href={l.href} className={`link-quiet rounded-sm ${focusRing}`}>
                     {l.label}
                   </a>
                 </li>

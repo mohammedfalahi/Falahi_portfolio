@@ -1,7 +1,7 @@
 import { profile } from '../data/portfolio'
-import { container, focusRing } from '../lib/ui'
+import { container, tapLink } from '../lib/ui'
 
-const link = `rounded-sm underline underline-offset-4 hover:text-ink ${focusRing}`
+const link = `${tapLink} hover:text-ink`
 
 export function Footer() {
   return (
@@ -10,7 +10,7 @@ export function Footer() {
         <p className="m-0">
           © {new Date().getFullYear()} {profile.name}
         </p>
-        <ul className="m-0 flex list-none flex-wrap gap-5 p-0">
+        <ul className="m-0 flex list-none flex-wrap gap-x-5 p-0">
           <li>
             <a href={profile.github} target="_blank" rel="noreferrer" className={link}>
               GitHub

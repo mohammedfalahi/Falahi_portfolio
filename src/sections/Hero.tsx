@@ -1,10 +1,10 @@
 import { CvPortrait } from '../components/CvPortrait'
 import { profile } from '../data/portfolio'
 import { usePrefersReducedMotion } from '../lib/motion'
-import { container, focusRing } from '../lib/ui'
+import { btnPrimary, btnSecondary, container, textLink as link } from '../lib/ui'
 
-const pill = `inline-block rounded-full border-[1.5px] border-ink px-5 py-3 text-[15px] font-semibold no-underline ${focusRing}`
-const textLink = `rounded-sm underline underline-offset-4 ${focusRing}`
+// Phones get 44px tap targets; the negative margin keeps the layout as it was.
+const textLink = `${link} inline-block -my-[11px] py-[11px] md:my-0 md:py-0`
 
 /**
  * Poster hero: a tall portrait, typeset from CV text, with the name set across it.
@@ -47,10 +47,10 @@ export function Hero() {
             <p className="m-0 max-w-[30ch] text-[clamp(20px,2vw,26px)] leading-[1.35]">{profile.intro}</p>
             <p className="m-0 mt-5 text-[15px] text-graphite">{profile.meta}</p>
             <div className="mt-4 flex flex-wrap gap-2.5">
-              <a href={profile.cv} download className={`${pill} bg-ink text-paper`}>
+              <a href={profile.cv} download className={btnPrimary}>
                 Download CV
               </a>
-              <a href={`mailto:${profile.email}`} className={`${pill} text-ink`}>
+              <a href={`mailto:${profile.email}`} className={btnSecondary}>
                 Email me
               </a>
             </div>

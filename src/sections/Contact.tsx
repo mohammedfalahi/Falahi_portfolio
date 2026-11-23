@@ -1,12 +1,16 @@
 import { useState, type FormEvent } from 'react'
 import { profile } from '../data/portfolio'
-import { container, focusRing } from '../lib/ui'
+import { btnPrimary, container, focusRing, tapLink as link } from '../lib/ui'
 
 type Status = 'idle' | 'sending' | 'sent' | 'error'
 
-const link = `rounded-sm underline underline-offset-4 ${focusRing}`
+/** Brand marks fetched by the taste-skill icons.mjs resolver into public/kit/icons. */
+const icon = (id: string) => `${import.meta.env.BASE_URL}kit/icons/${id}.svg`
+// The underline sits on the name only; the whole row (icon included) is the target.
+const iconLink = `link-host inline-flex min-h-[44px] items-center gap-2 rounded-sm md:min-h-0 ${focusRing}`
+
 const label = 'mb-1 block text-sm text-graphite'
-const field = `w-full rounded-none border-0 border-b-[1.5px] border-ink bg-transparent px-0 py-2 text-ink focus:outline-none ${focusRing}`
+const field = `w-full rounded-none border-0 border-b-[1.5px] border-ink bg-transparent px-0 py-2 text-ink ${focusRing}`
 
 export function Contact() {
   const [status, setStatus] = useState<Status>('idle')
@@ -43,15 +47,22 @@ export function Contact() {
       </a>
 
       <div className="mt-12 grid gap-10 md:grid-cols-2">
-        <ul className="m-0 flex list-none flex-col gap-2 p-0">
+        <ul className="m-0 flex list-none flex-col gap-0 p-0 md:gap-2">
           <li>
             <a href={'tel:' + profile.phone.replace(/\s/g, '')} className={link}>
               {profile.phone}
             </a>
           </li>
           <li>
-            <a href={profile.linkedin} target="_blank" rel="noreferrer" className={link}>
-              LinkedIn
+            <a href={profile.github} target="_blank" rel="noreferrer" className={iconLink}>
+              <img src={icon('github')} alt="" width={20} height={20} className="h-5 w-5 dark:invert" />
+              <span className="link">GitHub</span>
+            </a>
+          </li>
+          <li>
+            <a href={profile.linkedin} target="_blank" rel="noreferrer" className={iconLink}>
+              <img src={icon('linkedin')} alt="" width={20} height={20} className="h-5 w-5" />
+              <span className="link">LinkedIn</span>
             </a>
           </li>
           <li>{profile.location}</li>
@@ -92,7 +103,7 @@ export function Contact() {
             <button
               type="submit"
               disabled={status === 'sending'}
-              className={`rounded-full bg-ink px-5 py-3 text-[15px] font-semibold text-paper disabled:opacity-60 ${focusRing}`}
+              className={btnPrimary}
             >
               {status === 'sending' ? 'Sending' : 'Send message'}
             </button>

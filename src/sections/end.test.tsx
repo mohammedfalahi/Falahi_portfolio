@@ -27,10 +27,31 @@ describe('Contact', () => {
     expect(mail).toHaveClass('cond')
     expect(screen.getByRole('link', { name: profile.phone })).toHaveAttribute('href', 'tel:+919567245034')
     expect(screen.getByRole('link', { name: 'LinkedIn' })).toHaveAttribute('href', profile.linkedin)
+    expect(screen.getByRole('link', { name: 'GitHub' })).toHaveAttribute('href', profile.github)
     expect(screen.getByText(profile.location)).toBeInTheDocument()
     expect(
       screen.getByText('Open to roles across India and the UAE. Email is the quickest way to reach me.'),
     ).toBeInTheDocument()
+  })
+
+  it('puts a decorative brand icon beside the GitHub and LinkedIn links', () => {
+    render(<Contact />)
+    for (const [name, file] of [
+      ['GitHub', 'github.svg'],
+      ['LinkedIn', 'linkedin.svg'],
+    ]) {
+      const link = screen.getByRole('link', { name })
+      const img = link.querySelector('img')
+      expect(img).not.toBeNull()
+      expect(img).toHaveAttribute('alt', '')
+      expect(img?.getAttribute('src')).toMatch(new RegExp(`/kit/icons/${file}$`))
+      expect(link).toHaveTextContent(name)
+    }
+  })
+
+  it('sends with the primary button', () => {
+    render(<Contact />)
+    expect(screen.getByRole('button', { name: 'Send message' })).toHaveClass('btn', 'btn-primary')
   })
 
   it('shows the error when fetch rejects', async () => {

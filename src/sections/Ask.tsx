@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent, type ReactNode } from 'react'
 import { fallback, findAnswer, suggestions, type AskEntry } from '../data/ask'
 import { usePrefersReducedMotion } from '../lib/motion'
-import { container, focusRing } from '../lib/ui'
+import { btnPrimary, btnSecondary, container, focusRing } from '../lib/ui'
 
 type Current = { n: number; entry: AskEntry | null; instant: boolean }
 
@@ -87,22 +87,25 @@ export function Ask() {
           </p>
         </div>
 
-        <form onSubmit={onSubmit} className="mt-7 flex gap-2.5 border-b-[1.5px] border-ink pb-2.5">
-          <input
-            name="q"
-            value={query}
-            onChange={e => setQuery(e.target.value)}
-            aria-label="Your question"
-            placeholder="Ask anything a recruiter would ask"
-            autoComplete="off"
-            className={`min-w-0 flex-1 rounded-sm bg-transparent py-2 text-[clamp(20px,2.2vw,28px)] text-ink placeholder:text-graphite focus:outline-none ${focusRing}`}
-          />
-          <button
-            type="submit"
-            className={`shrink-0 rounded-full bg-cite px-[22px] font-semibold text-paper ${focusRing}`}
-          >
-            Ask
-          </button>
+        <form onSubmit={onSubmit} className="mt-7">
+          <label htmlFor="ask-q" className="block text-sm text-graphite">
+            Your question
+          </label>
+          {/* The ring sits on the underlined row, so the input itself needs no outline of its own. */}
+          <div className="mt-1 flex gap-2.5 rounded-sm border-b-[1.5px] border-ink pb-2.5 outline-offset-4 has-[input:focus-visible]:outline has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-ink">
+            <input
+              id="ask-q"
+              name="q"
+              value={query}
+              onChange={e => setQuery(e.target.value)}
+              placeholder="Ask anything a recruiter would ask"
+              autoComplete="off"
+              className="min-w-0 flex-1 bg-transparent py-2 text-[clamp(20px,2.2vw,28px)] text-ink placeholder:text-graphite focus:outline-none"
+            />
+            <button type="submit" className={`${btnPrimary} shrink-0 px-[22px]`}>
+              Ask
+            </button>
+          </div>
         </form>
 
         <div className="mt-4 flex flex-wrap gap-2">
@@ -111,7 +114,7 @@ export function Ask() {
               key={s}
               type="button"
               onClick={() => onChip(s)}
-              className={`rounded-full border border-rule px-3.5 py-2 text-left text-sm text-ink hover:border-ink ${focusRing}`}
+              className={`${btnSecondary} btn-sm text-left`}
             >
               {s}
             </button>

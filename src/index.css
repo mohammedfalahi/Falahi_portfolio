@@ -21,13 +21,13 @@
   .dark {
     --paper: #000000;
     --ink: #E8E8E4;
-    --graphite: #9A9A95;
+    --graphite: #ABABA6;
     --rule: #2A2A28;
     --cite: #8A9BFF;
     --well: #121211;
     --paper-rgb: 0 0 0;
     --ink-rgb: 232 232 228;
-    --graphite-rgb: 154 154 149;
+    --graphite-rgb: 171 171 166;
     --rule-rgb: 42 42 40;
     --cite-rgb: 138 155 255;
     --well-rgb: 18 18 17;
@@ -49,6 +49,12 @@
     transition: background-color 0.3s, color 0.3s;
   }
 
+  /* Every focusable element shows an ink ring when reached by keyboard. */
+  :focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -66,5 +72,123 @@
     letter-spacing: -0.01em;
     text-transform: uppercase;
     line-height: 0.85;
+  }
+}
+
+/*
+  Buttons: exactly two styles.
+  .btn-primary   solid ink pill, paper text
+  .btn-secondary 1.5px ink outline pill
+  .btn-sm        a smaller size for chips and the theme toggle (44px tall on phones, compact from 768px)
+  Hover lifts 1px, press settles 1px and shrinks a touch; no transforms under reduced motion.
+*/
+@layer components {
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 12px 20px;
+    border: 1.5px solid var(--ink);
+    border-radius: 9999px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      transform 180ms cubic-bezier(.22, 1, .36, 1),
+      background-color 200ms,
+      color 200ms;
+  }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+  }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+  }
+  .btn-secondary:hover {
+    background: rgb(var(--ink-rgb) / 0.06);
+  }
+  .btn:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+  .btn-sm {
+    padding: 8px 14px;
+    font-size: 14px;
+    font-weight: 400;
+  }
+  @media (min-width: 768px) {
+    .btn-sm {
+      min-height: 0;
+      padding: 6px 14px;
+    }
+  }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    .btn:not(:disabled):hover {
+      transform: translateY(-1px);
+    }
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    .btn:not(:disabled):active {
+      transform: translateY(1px) scale(0.98);
+    }
+  }
+
+  /*
+    Text links: a 1px underline at rest; on hover a 2px line draws in from the left over it.
+    Both lines are backgrounds placed at the bottom of the text (content box), so padding added
+    for touch targets does not move them.
+  */
+  .link,
+  .link-quiet {
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor), linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-origin: content-box;
+    background-position: 0 calc(100% - 1px), 0 calc(100% - 1px);
+    background-size: 0% 2px, 100% 1px;
+    transition: background-size 350ms cubic-bezier(.22, 1, .36, 1);
+  }
+  .link-quiet {
+    background-size: 0% 2px, 0% 1px;
+  }
+  .link:hover,
+  .link-quiet:hover,
+  .link-host:hover .link {
+    background-size: 100% 2px, 100% 1px;
+  }
+  .row-title {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 2px;
+    transition: background-size 350ms cubic-bezier(.22, 1, .36, 1);
+  }
+  .row-hover:hover .row-title,
+  .row-hover:focus-within .row-title {
+    background-size: 100% 2px;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .btn,
+    .link,
+    .link-quiet,
+    .row-title {
+      transition: none;
+    }
+  }
+
+  /* The kit diagram (public/kit/diagrams) reads its palette from these names. */
+  .work-diagram {
+    --muted: var(--graphite);
+    --accent: var(--cite);
+    --accent-ink: var(--paper);
+    --card: var(--well);
+    --bg: var(--well);
+    --font-text: theme(fontFamily.sans);
+    --p-h: 340px;
   }
 }
