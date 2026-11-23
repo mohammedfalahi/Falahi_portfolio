@@ -19,7 +19,14 @@ function WorkRow({ project }: { project: Project }) {
         )}
       </div>
       <div>
-        <h3 className="m-0 mb-1.5 text-[26px] font-bold leading-tight tracking-[-0.01em]">{project.title}</h3>
+        {/* Without a metric the big figure already shows the name, so the heading is for screen readers only. */}
+        <h3
+          className={
+            project.metric ? 'm-0 mb-1.5 text-[26px] font-bold leading-tight tracking-[-0.01em]' : 'sr-only'
+          }
+        >
+          {project.title}
+        </h3>
         <p className="m-0 max-w-[56ch] text-graphite">{project.summary}</p>
         <p className="m-0 mt-2 text-[15px] text-graphite">{project.tags.join(', ')}</p>
       </div>
